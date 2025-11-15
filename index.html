@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <title>DATA OMK SEKONAU</title>
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #B0E0E6;
+      font-family: "Poppins", sans-serif;
+    }
+
+    .login-box {
+      width: 320px;
+      background: rgba(239, 7, 7, 0.15);
+      padding: 30px;
+      border-radius: 18px;
+      box-shadow: 0 0 20px rgba(9, 231, 6, 0.3);
+      backdrop-filter: blur(12px);
+      text-align: center;
+      color: rgb(244, 10, 10);
+      animation: fadeIn 1s ease;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      font-weight: 600;
+      text-shadow: 0 0 8px white;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      border-radius: 10px;
+      border: none;
+      outline: none;
+      margin-bottom: 15px;
+      font-size: 15px;
+      box-shadow: 0 0 10px rgba(255,255,255,0.25);
+      background: rgba(255,255,255,0.2);
+      color: rgb(45, 224, 10);
+    }
+
+    input::placeholder {
+      color: #0909db;
+    }
+
+    button {
+      width: 100%;
+      padding: 13px;
+      border: none;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #38bdf8, #0ea5e9);
+      color: white;
+      font-size: 17px;
+      cursor: pointer;
+      font-weight: bold;
+      box-shadow: 0 0 15px #38bdf8;
+      transition: 0.25s;
+    }
+
+    button:hover {
+      box-shadow: 0 0 25px #38bdf8, 0 0 40px #0ea5e9;
+      transform: scale(1.05);
+    }
+
+    a {
+      color: #fff;
+      font-weight: bold;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="login-box">
+  <h2>ʟօɢɨռ</h2>
+  <p>DAFTAR DATA OMK ST PETRUS DAN PAULUS RASUL SEKONAU</p>
+
+  <input id="email" type="email" placeholder="Email">
+  <input id="password" type="password" placeholder="Password">
+
+  <button onclick="login()">Login</button>
+
+  <p style="margin-top:15px;">𝕀𝕟𝕘𝕚𝕟 𝕝𝕚𝕙𝕒𝕥 𝕕𝕒𝕥𝕒 𝕒𝕟𝕕𝕒 𝕕𝕚𝕤𝕚𝕟𝕚? ℍ𝕦𝕓𝕦𝕟𝕘𝕚 𝕤𝕒𝕪𝕒<a href="https://heriyandi9494-cloud.github.io/wa-saya/">𝐊𝐥𝐢𝐤𝐡𝐞𝐫𝐞</a></p>
+</div>
+
+<!-- ===================== FIREBASE SCRIPT ========================== -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+  import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyCWKrvRXSsefKayAudgkAwB1x9DFiakh3Q",
+    authDomain: "akses-omk.firebaseapp.com",
+    projectId: "akses-omk",
+    storageBucket: "akses-omk.firebasestorage.app",
+    messagingSenderId: "458484845426",
+    appId: "1:458484845426:web:6e1398296a7f6167626beb",
+    measurementId: "G-QEJETZ4C53"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+
+  window.login = function() {
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+
+    signInWithEmailAndPassword(auth, email, password)
+      .then(() => {
+        window.location.href = "https://heriyandi9494-cloud.github.io/omksekonau/";
+      })
+      .catch((error) => {
+        alert("Login gagal: " + error.message);
+      });
+  };
+</script>
+
+</body>
+</html>
