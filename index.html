@@ -10,10 +10,35 @@
       padding: 0;
       height: 100vh;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
       background: #B0E0E6;
       font-family: "Poppins", sans-serif;
+    }
+
+    /* === TEKS BERJALAN === */
+    .marquee-container {
+      width: 100%;
+      overflow: hidden;
+      white-space: nowrap;
+      box-sizing: border-box;
+      margin-bottom: 20px;
+    }
+
+    .marquee {
+      display: inline-block;
+      padding-left: 100%;
+      animation: marquee 35s linear infinite;
+      font-size: 18px;
+      font-weight: bold;
+      color: #ff0000;
+      text-shadow: 0 0 5px #fff;
+    }
+
+    @keyframes marquee {
+      0% { transform: translateX(0%); }
+      100% { transform: translateX(-100%); }
     }
 
     .login-box {
@@ -82,6 +107,11 @@
   </style>
 </head>
 <body>
+
+<!-- Teks Berjalan -->
+<div class="marquee-container">
+  <div class="marquee">𝐒𝐞𝐥𝐚𝐦𝐚𝐭 𝐃𝐚𝐭𝐚𝐧𝐠 𝐢𝐧𝐢 𝐃𝐚𝐭𝐚 𝐎𝐌𝐊 𝐒𝐭. 𝐏𝐞𝐭𝐫𝐮𝐬 & 𝐏𝐚𝐮𝐥𝐮𝐬 𝐑𝐚𝐬𝐮𝐥 𝐒𝐞𝐤𝐨𝐧𝐚𝐮! | 𝐀𝐤𝐬𝐞𝐬 𝐝𝐚𝐭𝐚 𝐤𝐢𝐭𝐚 𝐚𝐝𝐚 𝐝𝐢𝐬𝐢𝐧𝐢!</div>
+</div>
 
 <div class="login-box">
   <h2>ʟօɢɨռ</h2>
