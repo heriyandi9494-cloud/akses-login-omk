@@ -4,36 +4,49 @@
   <meta charset="UTF-8" />
   <title>DATA OMK SEKONAU</title>
 
+  <!-- FULLSCREEN MOBILE SETTING -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
   <style>
-    body {
+    * {
       margin: 0;
       padding: 0;
-      height: 100vh;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+      font-family: "Poppins", sans-serif;
+      background: #0b0f19;
+    }
+
+    body {
+      height: 100dvh; /* Fullscreen Real */
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      background: #B0E0E6;
-      font-family: "Poppins", sans-serif;
+      background: radial-gradient(circle at top, #1a1f2a, #000);
     }
 
-    /* === TEKS BERJALAN === */
+    /* ===== TEKS BERJALAN PREMIUM ===== */
     .marquee-container {
       width: 100%;
       overflow: hidden;
       white-space: nowrap;
-      box-sizing: border-box;
-      margin-bottom: 20px;
+      margin-bottom: 15px;
     }
 
     .marquee {
       display: inline-block;
       padding-left: 100%;
-      animation: marquee 35s linear infinite;
-      font-size: 18px;
+      animation: marquee 25s linear infinite;
+      font-size: 16px;
       font-weight: bold;
-      color: #ff0000;
-      text-shadow: 0 0 5px #fff;
+      color: #ff4d4d;
+      text-shadow: 0 0 12px #ff0000;
     }
 
     @keyframes marquee {
@@ -41,63 +54,83 @@
       100% { transform: translateX(-100%); }
     }
 
+    /* ===== LOGIN BOX PREMIUM GLASS DARK ===== */
     .login-box {
-      width: 320px;
-      background: rgba(239, 7, 7, 0.15);
+      width: 90%;
+      max-width: 340px;
+      background: rgba(255, 255, 255, 0.07);
       padding: 30px;
       border-radius: 18px;
-      box-shadow: 0 0 20px rgba(9, 231, 6, 0.3);
-      backdrop-filter: blur(12px);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      box-shadow: 0 0 30px rgba(0, 200, 255, 0.25),
+                  inset 0 0 20px rgba(255, 255, 255, 0.05);
       text-align: center;
-      color: rgb(244, 10, 10);
-      animation: fadeIn 1s ease;
+      color: #fff;
+      animation: fadeIn 0.9s ease;
+      border: 1px solid rgba(255,255,255,0.08);
     }
 
     h2 {
-      margin-bottom: 20px;
-      font-weight: 600;
-      text-shadow: 0 0 8px white;
+      margin-bottom: 18px;
+      font-weight: 700;
+      color: #4fc3f7;
+      text-shadow: 0 0 10px #00eaff;
     }
 
+    p {
+      font-size: 14px;
+      color: #d4d4d4;
+      margin-bottom: 10px;
+    }
+
+    /* ===== INPUT DARK GLASS ===== */
     input {
       width: 100%;
       padding: 12px;
+      margin-bottom: 14px;
       border-radius: 10px;
       border: none;
       outline: none;
-      margin-bottom: 15px;
       font-size: 15px;
-      box-shadow: 0 0 10px rgba(255,255,255,0.25);
-      background: rgba(255,255,255,0.2);
-      color: rgb(45, 224, 10);
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(10px);
+      box-shadow: inset 0 0 8px rgba(255,255,255,0.15);
+      color: #fff;
     }
 
     input::placeholder {
-      color: #0909db;
+      color: #78b0ff;
     }
 
+    /* ===== TOMBOL PREMIUM NEON ===== */
     button {
       width: 100%;
       padding: 13px;
       border: none;
       border-radius: 12px;
-      background: linear-gradient(135deg, #38bdf8, #0ea5e9);
-      color: white;
+      background: linear-gradient(135deg, #00eaff, #0066ff);
+      color: #000;
       font-size: 17px;
       cursor: pointer;
       font-weight: bold;
-      box-shadow: 0 0 15px #38bdf8;
-      transition: 0.25s;
+      box-shadow: 0 0 20px #00eaff;
+      transition: 0.3s;
     }
 
     button:hover {
-      box-shadow: 0 0 25px #38bdf8, 0 0 40px #0ea5e9;
       transform: scale(1.05);
+      box-shadow: 0 0 35px #0099ff, 0 0 50px #00eaff;
     }
 
     a {
-      color: #fff;
+      color: #1ea7ff;
       font-weight: bold;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-shadow: 0 0 8px #00eaff;
     }
 
     @keyframes fadeIn {
@@ -108,11 +141,14 @@
 </head>
 <body>
 
-<!-- Teks Berjalan -->
+<!-- TEKS BERJALAN -->
 <div class="marquee-container">
-  <div class="marquee">𝐒𝐞𝐥𝐚𝐦𝐚𝐭 𝐃𝐚𝐭𝐚𝐧𝐠 𝐢𝐧𝐢 𝐃𝐚𝐭𝐚 𝐎𝐌𝐊 𝐒𝐭. 𝐏𝐞𝐭𝐫𝐮𝐬 & 𝐏𝐚𝐮𝐥𝐮𝐬 𝐑𝐚𝐬𝐮𝐥 𝐒𝐞𝐤𝐨𝐧𝐚𝐮! | 𝐀𝐤𝐬𝐞𝐬 𝐝𝐚𝐭𝐚 𝐤𝐢𝐭𝐚 𝐚𝐝𝐚 𝐝𝐢𝐬𝐢𝐧𝐢!</div>
+  <div class="marquee">
+    𝐒𝐞𝐥𝐚𝐦𝐚𝐭 𝐃𝐚𝐭𝐚𝐧𝐠 𝐃𝐚𝐭𝐚 𝐎𝐌𝐊 𝐒𝐭. 𝐏𝐞𝐭𝐫𝐮𝐬 & 𝐏𝐚𝐮𝐥𝐮𝐬 𝐑𝐚𝐬𝐮𝐥 𝐒𝐞𝐤𝐨𝐧𝐚𝐮 | 𝐀𝐤𝐬𝐞𝐬 𝐝𝐚𝐭𝐚 𝐚𝐝𝐚 𝐝𝐢𝐬𝐢𝐧𝐢!
+  </div>
 </div>
 
+<!-- LOGIN GLASS -->
 <div class="login-box">
   <h2>ʟօɢɨռ</h2>
   <p>DAFTAR DATA OMK ST PETRUS DAN PAULUS RASUL SEKONAU</p>
@@ -122,10 +158,13 @@
 
   <button onclick="login()">Login</button>
 
-  <p style="margin-top:15px;">𝕀𝕟𝕘𝕚𝕟 𝕝𝕚𝕙𝕒𝕥 𝕕𝕒𝕥𝕒 𝕒𝕟𝕕𝕒 𝕕𝕚𝕤𝕚𝕟𝕚? ℍ𝕦𝕓𝕦𝕟𝕘𝕚 𝕤𝕒𝕪𝕒<a href=" https://heriyandi9494-cloud.github.io/wa-saya/">𝐊𝐥𝐢𝐤𝐡𝐞𝐫𝐞</a></p>
+  <p style="margin-top:15px;">
+    Ingin lihat data anda di sini?  
+    <a href="https://heriyandi9494-cloud.github.io/wa-saya/">Klik disini</a>
+  </p>
 </div>
 
-<!-- ===================== FIREBASE SCRIPT ========================== -->
+<!-- FIREBASE AUTH -->
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
   import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
