@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 <title>Login Elegan</title>
 
 <style>
@@ -14,7 +14,7 @@
         overflow-x: hidden;
     }
 
-    /* ----- LOGO & JUDUL BERCAYAHA ----- */
+    /* ----- LOGO & JUDUL ----- */
     .header {
         text-align: center;
         padding: 40px 20px;
@@ -101,6 +101,7 @@
         font-weight: bold;
         font-size: 20px;
     }
+
     .logout-btn {
         padding: 10px 20px;
         background: red;
@@ -124,49 +125,23 @@
         backdrop-filter:blur(5px);
         box-shadow:0 0 20px rgba(0,150,255,0.3);
     }
-    /* ----- RESPONSIVE UNTUK HP ----- */
-@media only screen and (max-width: 600px) {
 
-    .header img {
-        width: 90px; /* logo lebih kecil */
+    /* ----- RESPONSIVE ----- */
+    @media only screen and (max-width: 600px) {
+        .header img { width: 90px; }
+        .glow-title { font-size: 24px; }
+        .welcome-box, .login-box, #dataBox { width: 95%; padding: 15px; }
+        .btn, .login-submit, .logout-btn, #dataBox a {
+            font-size: 16px; padding: 10px 20px;
+        }
+        .login-box input { width: 92%; padding: 10px; font-size: 16px; }
     }
-
-    .glow-title {
-        font-size: 24px;
-        text-shadow: 0 0 6px #00f, 0 0 12px #0099ff, 0 0 24px #00ccff;
-    }
-
-    .welcome-box, .login-box, #dataBox {
-        width: 95%;
-        padding: 15px;
-    }
-
-    .btn, .login-submit, .logout-btn, #dataBox a {
-        font-size: 16px;
-        padding: 10px 20px;
-    }
-
-    .welcome-box p, #dataBox p {
-        font-size: 16px;
-        line-height: 1.4;
-    }
-
-    .login-box input {
-        width: 92%;
-        padding: 10px;
-        font-size: 16px;
-    }
-}
-
 </style>
 
-<!-- Firebase (DARI CODE ANDA, TIDAK DIUBAH) -->
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js"></script>
-
+<!-- ======================= FIREBASE TERBARU ======================= -->
 <script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
-  import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-auth.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getAuth, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCWKrvRXSsefKayAudgkAwB1x9DFiakh3Q",
@@ -178,51 +153,88 @@ const firebaseConfig = {
   measurementId: "G-QEJETZ4C53"
 };
 
-// Firebase Inisialisasi (MENGIKUTI CODE ANDA)
-firebase.initializeApp(firebaseConfig);
-const auth = firebase.auth();
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+/* ========== LOGIN FIREBASE ========== */
+window.doLogin = function() {
+    const email = document.getElementById("user").value;
+    const password = document.getElementById("pass").value;
+
+    if (email === "" || password === "") {
+        alert("Username dan password harus diisi!");
+        return;
+    }
+
+    signInWithEmailAndPassword(auth, email, password)
+    .then(() => {
+        document.getElementById("loginBox").style.display = "none";
+        document.getElementById("statusBox").style.display = "block";
+
+        setTimeout(() => {
+            document.getElementById("statusBox").style.display = "none";
+            document.getElementById("dataBox").style.display = "block";
+        }, 1000);
+    })
+    .catch((error) => {
+        alert("Login gagal: " + error.message);
+    });
+};
+
+/* ========== LOGOUT ========== */
+window.doLogout = function() {
+    signOut(auth).then(() => {
+        document.getElementById("statusBox").style.display = "none";
+        document.getElementById("welcome").style.display = "block";
+        document.getElementById("dataBox").style.display = "none";
+    });
+};
+
+/* ========== TAMPILKAN FORM ========== */
+window.showLogin = function() {
+    document.getElementById("welcome").style.display = "none";
+    document.getElementById("loginBox").style.display = "block";
+};
 </script>
 
 </head>
 <body>
 
 <header class="header">
-    <img src="https://i.postimg.cc/XJ1sW3v1/articles-My-Gsv-MX-news-g5hoqxs-Santo-Petrus-dan-Santo-Paulus-Rasul-001-removebg-preview.png" 
-         alt="Logo OMK Sekonau">
+    <img src="https://i.postimg.cc/XJ1sW3v1/articles-My-Gsv-MX-news-g5hoqxs-Santo-Petrus-dan-Santo-Paulus-Rasul-001-removebg-preview.png" alt="Logo OMK Sekonau">
     <h1 class="glow-title">DATABASE OMK SEKONAU</h1>
 </header>
 
-<!-- HALAMAN INTRO -->
+<!-- ========== HALAMAN AWAL ========== -->
 <div class="welcome-box" id="welcome">
     <h2>Selamat Datang</h2>
     <p>
-        𝐇𝐚𝐥𝐚𝐦𝐚𝐧 𝐢𝐧𝐢 𝐛𝐞𝐫𝐢𝐬𝐢 𝐝𝐚𝐭𝐚 𝐎𝐌𝐊 𝐒𝐞𝐤𝐨𝐧𝐚𝐮, 𝐝𝐚𝐧 𝐛𝐞𝐫𝐛𝐚𝐠𝐚𝐢 𝐢𝐧𝐟𝐨𝐫𝐦𝐚𝐬𝐢 𝐢𝐧𝐭𝐞𝐫𝐧𝐚𝐥 𝐥𝐚𝐢𝐧𝐧𝐲𝐚.
-        𝐊𝐥𝐢𝐤 𝐭𝐨𝐦𝐛𝐨𝐥 𝐝𝐢 𝐛𝐚𝐰𝐚𝐡 𝐮𝐧𝐭𝐮𝐤 𝐦𝐚𝐬𝐮𝐤 𝐤𝐞 𝐡𝐚𝐥𝐚𝐦𝐚𝐧 𝐥𝐨𝐠𝐢𝐧.
+        Halaman ini berisi data OMK Sekonau dan berbagai informasi internal lainnya.
+        Klik tombol di bawah untuk masuk.
     </p>
     <button class="btn" onclick="showLogin()">MASUK</button>
 </div>
 
-<!-- FORM LOGIN -->
+<!-- ========== FORM LOGIN ========== -->
 <div class="login-box" id="loginBox">
     <h3 style="text-align:center;">Login Akun</h3>
-    <input type="text" placeholder="Username" id="user">
+    <input type="text" placeholder="Email" id="user">
     <input type="password" placeholder="Password" id="pass">
     <button class="login-submit" onclick="doLogin()">LOGIN</button>
 </div>
 
-<!-- STATUS LOGIN -->
+<!-- ========== STATUS LOGIN ========== -->
 <div class="status" id="statusBox">
     <div class="logged-in">LOGIN BERHASIL ✔</div>
     <button class="logout-btn" onclick="doLogout()">LOGOUT</button>
 </div>
 
-<!-- HALAMAN DATA OMK -->
-
+<!-- ========== HALAMAN DATA OMK ========== -->
 <div id="dataBox">
     <h2 style="text-align:center;">DATA OMK SEKONAU</h2>
 
     <p style="text-align:center; font-size:18px;">
-        𝐊𝐥𝐢𝐤 𝐭𝐨𝐦𝐛𝐨𝐥 𝐝𝐢 𝐛𝐚𝐰𝐚𝐡 𝐮𝐧𝐭𝐮𝐤 𝐦𝐞𝐦𝐛𝐮𝐤𝐚 𝐡𝐚𝐥𝐚𝐦𝐚𝐧 𝐝𝐚𝐭𝐚 𝐥𝐞𝐧𝐠𝐤𝐚𝐩 𝐎𝐌𝐊 𝐒𝐞𝐤𝐨𝐧𝐚𝐮.
+        Klik tombol di bawah untuk membuka data lengkap OMK Sekonau.
     </p>
 
     <div style="text-align:center; margin-top:20px;">
@@ -242,39 +254,6 @@ const auth = firebase.auth();
         </a>
     </div>
 </div>
-
-<script>
-    function showLogin() {
-        document.getElementById("welcome").style.display = "none";
-        document.getElementById("loginBox").style.display = "block";
-    }
-
-    function doLogin() {
-        let u = document.getElementById("user").value;
-        let p = document.getElementById("pass").value;
-
-        if (u === "" || p === "") {
-            alert("Username dan password harus diisi!");
-            return;
-        }
-
-        // LOGIN BERHASIL (versi Anda tetap dipakai)
-        document.getElementById("loginBox").style.display = "none";
-        document.getElementById("statusBox").style.display = "block";
-
-        // TAMPILKAN DATA SETELAH 1 DETIK
-        setTimeout(() => {
-            document.getElementById("statusBox").style.display = "none";
-            document.getElementById("dataBox").style.display = "block";
-        }, 1000);
-    }
-
-    function doLogout() {
-        document.getElementById("statusBox").style.display = "none";
-        document.getElementById("welcome").style.display = "block";
-        document.getElementById("dataBox").style.display = "none";
-    }
-</script>
 
 </body>
 </html>
